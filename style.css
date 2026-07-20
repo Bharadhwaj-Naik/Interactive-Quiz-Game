@@ -484,3 +484,81 @@ body {
 .restart-btn:active {
     transform: scale(0.96);
 }
+/* ---------- UTILITY ---------- */
+.hidden {
+    display: none !important;
+}
+
+.question-screen {
+    display: block;
+}
+
+.question-screen.hidden {
+    display: none;
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 420px) {
+    .quiz-title {
+        font-size: 18px;
+    }
+
+    .quiz-title span {
+        font-size: 11px;
+        padding: 1px 10px;
+    }
+
+    .score-badge {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    .timer-display {
+        font-size: 22px;
+    }
+
+    .timer-bar {
+        width: 70px;
+    }
+
+    .option-btn {
+        font-size: 14px;
+        padding: 13px 14px;
+    }
+
+    .result-score-box .big-score {
+        font-size: 40px;
+    }
+
+    .result-stats {
+        gap: 14px;
+    }
+
+    .result-stat {
+        padding: 10px 16px;
+        min-width: 60px;
+    }
+
+    .result-stat .stat-number {
+        font-size: 20px;
+    }
+}
