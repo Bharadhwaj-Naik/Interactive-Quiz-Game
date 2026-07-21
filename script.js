@@ -174,3 +174,38 @@ function updateTimerDisplay() {
         timerBarFill.classList.add('warning');
     }
 }
+
+function handleOptionClick(selectedIndex) {
+    if (isAnswered) return;
+    isAnswered = true;
+    clearTimer();
+
+    const q = shuffledQuestions[currentIndex];
+    const isCorrect = selectedIndex === q.correct;
+    const allBtns = optionsContainer.querySelectorAll('.option-btn');
+
+    // Disable all buttons
+    allBtns.forEach(btn => btn.classList.add('disabled'));
+
+    // Highlight correct & wrong
+    allBtns.forEach((btn, i) => {
+        if (i === q.correct) {
+            btn.classList.add('correct');
+        }
+        if (i === selectedIndex && !isCorrect) {
+            btn.classList.add('wrong');
+        }
+    });
+
+    // Update score
+    if (isCorrect) {
+        score += 1;
+        correctTotal += 1;
+    } else {
+        wrongTotal += 1;
+    }
+    scoreDisplay.textContent = score;
+
+    // Enable next button
+    nextBtn.disabled = false;
+}
