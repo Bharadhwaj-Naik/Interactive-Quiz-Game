@@ -88,3 +88,48 @@ function shuffleArray(arr) {
     }
     return arr;
 }
+
+
+
+const shuffledQuestions = shuffleArray([...QUESTIONS]);
+function renderQuestion(index) {
+    const q = shuffledQuestions[index];
+    if (!q) return;
+
+    isAnswered = false;
+    nextBtn.disabled = true;
+    clearTimer();
+
+    // Update question text
+    questionText.textContent = q.question;
+
+    // Build options with letters
+    const letters = ['A', 'B', 'C', 'D'];
+    optionsContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.dataset.index = i;
+        btn.innerHTML = `
+              <span class="letter">${letters[i]}</span>
+              <span class="option-text">${opt}</span>
+            `;
+        btn.addEventListener('click', () => handleOptionClick(i));
+        optionsContainer.appendChild(btn);
+    });
+
+    // Update progress
+    const current = index + 1;
+    const pct = Math.round((current / TOTAL) * 100);
+    questionCounter.textContent = `Question ${current} / ${TOTAL}`;
+    progressPercent.textContent = `${pct}%`;
+    progressFill.style.width = `${pct}%`;
+
+    // Update score badge
+    scoreDisplay.textContent = score;
+
+    // Reset & start timer
+    timer = TIME_PER_QUESTION;
+    updateTimerDisplay();
+    startTimer();
+}
