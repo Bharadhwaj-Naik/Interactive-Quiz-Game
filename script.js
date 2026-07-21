@@ -54,3 +54,37 @@ let timer = TIME_PER_QUESTION;
 let timerInterval = null;
 let isAnswered = false;
 let isQuizComplete = false;
+
+const questionScreen = document.getElementById('questionScreen');
+const resultScreen = document.getElementById('resultScreen');
+const questionText = document.getElementById('questionText');
+const optionsContainer = document.getElementById('optionsContainer');
+const nextBtn = document.getElementById('nextBtn');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const questionCounter = document.getElementById('questionCounter');
+const progressPercent = document.getElementById('progressPercent');
+const progressFill = document.getElementById('progressFill');
+const timerDisplay = document.getElementById('timerDisplay');
+const timerBarFill = document.getElementById('timerBarFill');
+
+// result elements
+const resultIcon = document.getElementById('resultIcon');
+const resultTitle = document.getElementById('resultTitle');
+const resultSubtitle = document.getElementById('resultSubtitle');
+const finalScore = document.getElementById('finalScore');
+const totalQuestions = document.getElementById('totalQuestions');
+const correctCount = document.getElementById('correctCount');
+const wrongCount = document.getElementById('wrongCount');
+const accuracyDisplay = document.getElementById('accuracyDisplay');
+const restartBtn = document.getElementById('restartBtn');
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
