@@ -133,3 +133,44 @@ function renderQuestion(index) {
     updateTimerDisplay();
     startTimer();
 }
+
+function startTimer() {
+    clearTimer();
+    timerInterval = setInterval(() => {
+        timer -= 1;
+        updateTimerDisplay();
+
+        if (timer <= 0) {
+            clearTimer();
+            // Time's up — auto-answer as wrong
+            if (!isAnswered) {
+                handleTimeout();
+            }
+        }
+    }, 1000);
+}
+
+function clearTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function updateTimerDisplay() {
+    timerDisplay.textContent = timer;
+    const pct = (timer / TIME_PER_QUESTION) * 100;
+    timerBarFill.style.width = `${Math.max(0, pct)}%`;
+
+    // Visual states
+    timerDisplay.classList.remove('warning', 'danger');
+    timerBarFill.classList.remove('warning', 'danger');
+
+    if (timer <= 4) {
+        timerDisplay.classList.add('danger');
+        timerBarFill.classList.add('danger');
+    } else if (timer <= 7) {
+        timerDisplay.classList.add('warning');
+        timerBarFill.classList.add('warning');
+    }
+}
