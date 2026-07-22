@@ -246,3 +246,47 @@ function goToNext() {
         finishQuiz();
     }
 }
+
+function finishQuiz() {
+    isQuizComplete = true;
+    clearTimer();
+
+    // Hide question screen, show result
+    questionScreen.classList.add('hidden');
+    resultScreen.classList.add('active');
+
+    // Populate result
+    const pct = Math.round((score / TOTAL) * 100);
+    finalScore.textContent = score;
+    totalQuestions.textContent = TOTAL;
+    correctCount.textContent = correctTotal;
+    wrongCount.textContent = wrongTotal;
+    accuracyDisplay.textContent = `${pct}%`;
+
+    // Icon & message based on performance
+    let icon, title, subtitle;
+    if (pct === 100) {
+        icon = '🏆';
+        title = 'Perfect Score!';
+        subtitle = 'Flawless! You are a quiz master!';
+    } else if (pct >= 80) {
+        icon = '🌟';
+        title = 'Excellent!';
+        subtitle = 'You really know your stuff. Keep it up!';
+    } else if (pct >= 60) {
+        icon = '💪';
+        title = 'Good Job!';
+        subtitle = 'Solid performance. A bit more practice and you\'ll be a pro!';
+    } else if (pct >= 40) {
+        icon = '📚';
+        title = 'Not Bad!';
+        subtitle = 'You have room to grow. Review and try again!';
+    } else {
+        icon = '🤔';
+        title = 'Keep Learning!';
+        subtitle = 'Don\'t give up! Every master was once a beginner.';
+    }
+    resultIcon.textContent = icon;
+    resultTitle.textContent = title;
+    resultSubtitle.textContent = subtitle;
+}
