@@ -290,3 +290,54 @@ function finishQuiz() {
     resultTitle.textContent = title;
     resultSubtitle.textContent = subtitle;
 }
+function restartQuiz() {
+    // Reset state
+    currentIndex = 0;
+    score = 0;
+    correctTotal = 0;
+    wrongTotal = 0;
+    isAnswered = false;
+    isQuizComplete = false;
+    clearTimer();
+
+    // Reshuffle questions
+    shuffleArray(QUESTIONS);
+    // Re-populate shuffledQuestions from original data
+    shuffledQuestions.length = 0;
+    shuffledQuestions.push(...shuffleArray([...QUESTIONS]));
+
+    // Switch screens
+    resultScreen.classList.remove('active');
+    questionScreen.classList.remove('hidden');
+
+    // Render first question
+    renderQuestion(0);
+}
+
+// ============================================================
+//  EVENT BINDING
+// ============================================================
+nextBtn.addEventListener('click', goToNext);
+restartBtn.addEventListener('click', restartQuiz);
+
+// ============================================================
+//  KEYBOARD SUPPORT (1-4 for options)
+// ============================================================
+document.addEventListener('keydown', (e) => {
+    if (isQuizComplete) return;
+    if (e.key >= '1' && e.key <= '4') {
+        const idx = parseInt(e.key) - 1;
+        const btns = optionsContainer.querySelectorAll('.option-btn');
+        if (btns[idx] && !btns[idx].classList.contains('disabled')) {
+            btns[idx].click();
+        }
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+        if (!nextBtn.disabled) {
+            e.preventDefault();
+            nextBtn.click();
+        }
+    }
+});
+
+renderQuestion(0);
