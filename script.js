@@ -209,3 +209,40 @@ function handleOptionClick(selectedIndex) {
     // Enable next button
     nextBtn.disabled = false;
 }
+function handleTimeout() {
+    if (isAnswered) return;
+    isAnswered = true;
+
+    const q = shuffledQuestions[currentIndex];
+    const allBtns = optionsContainer.querySelectorAll('.option-btn');
+
+    // Disable all
+    allBtns.forEach(btn => btn.classList.add('disabled'));
+
+    // Show correct answer
+    allBtns.forEach((btn, i) => {
+        if (i === q.correct) {
+            btn.classList.add('correct');
+        }
+    });
+
+    // Increment wrong
+    wrongTotal += 1;
+    scoreDisplay.textContent = score;
+
+    nextBtn.disabled = false;
+}
+
+// ============================================================
+//  NEXT QUESTION / FINISH
+// ============================================================
+function goToNext() {
+    if (nextBtn.disabled) return;
+
+    if (currentIndex + 1 < TOTAL) {
+        currentIndex += 1;
+        renderQuestion(currentIndex);
+    } else {
+        finishQuiz();
+    }
+}
