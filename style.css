@@ -77,6 +77,7 @@ body {
     font-size: 18px;
     margin-left: 4px;
 }
+
 .progress-wrapper {
     margin-bottom: 28px;
 }
@@ -151,6 +152,7 @@ body {
     color: #f5576c;
     animation: pulse 0.6s ease-in-out infinite alternate;
 }
+
 @keyframes pulse {
     0% {
         opacity: 1;
@@ -309,6 +311,7 @@ body {
 .option-btn .option-text {
     flex: 1;
 }
+
 /* ---------- NEXT BUTTON ---------- */
 .next-btn-wrapper {
     display: flex;
@@ -484,6 +487,7 @@ body {
 .restart-btn:active {
     transform: scale(0.96);
 }
+
 /* ---------- UTILITY ---------- */
 .hidden {
     display: none !important;
