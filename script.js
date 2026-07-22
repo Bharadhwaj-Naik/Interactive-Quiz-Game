@@ -43,9 +43,6 @@ const QUESTIONS = [{
 const TOTAL = QUESTIONS.length;
 const TIME_PER_QUESTION = 15; // seconds
 
-// ============================================================
-//  STATE
-// ============================================================
 let currentIndex = 0;
 let score = 0;
 let correctTotal = 0;
@@ -67,7 +64,6 @@ const progressFill = document.getElementById('progressFill');
 const timerDisplay = document.getElementById('timerDisplay');
 const timerBarFill = document.getElementById('timerBarFill');
 
-// result elements
 const resultIcon = document.getElementById('resultIcon');
 const resultTitle = document.getElementById('resultTitle');
 const resultSubtitle = document.getElementById('resultSubtitle');
@@ -78,9 +74,6 @@ const wrongCount = document.getElementById('wrongCount');
 const accuracyDisplay = document.getElementById('accuracyDisplay');
 const restartBtn = document.getElementById('restartBtn');
 
-// ============================================================
-//  HELPERS
-// ============================================================
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -233,9 +226,6 @@ function handleTimeout() {
     nextBtn.disabled = false;
 }
 
-// ============================================================
-//  NEXT QUESTION / FINISH
-// ============================================================
 function goToNext() {
     if (nextBtn.disabled) return;
 
@@ -314,15 +304,9 @@ function restartQuiz() {
     renderQuestion(0);
 }
 
-// ============================================================
-//  EVENT BINDING
-// ============================================================
 nextBtn.addEventListener('click', goToNext);
 restartBtn.addEventListener('click', restartQuiz);
 
-// ============================================================
-//  KEYBOARD SUPPORT (1-4 for options)
-// ============================================================
 document.addEventListener('keydown', (e) => {
     if (isQuizComplete) return;
     if (e.key >= '1' && e.key <= '4') {
